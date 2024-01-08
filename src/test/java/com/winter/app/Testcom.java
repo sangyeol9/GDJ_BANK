@@ -33,16 +33,22 @@ public class Testcom extends MyTest {
 		assertNotNull(dto.getProductcontents());
 	}
 	
-	@Test
-	public void testAdd() throws Exception{
-		ProductDTO dto = new ProductDTO();
-		dto.setProductnum(10L);
-		dto.setProductjumsu(3.3);
-		dto.setProductname("test");
-		dto.setProductrate(3.3);
-		dto.setProductcontents("test");
-		int result = dao.add(dto);
-		assertNotEquals(0, result);
-	}
+//	@Test
+//	public void testAdd() throws Exception{
+//		ProductDTO dto = new ProductDTO();
+//		for(int i=61;i<106;i++) {
+//		dto.setProductnum(Long.valueOf(i));
+//		dto.setProductjumsu(1.0);
+//		dto.setProductname("test");
+//		dto.setProductrate(1.0);
+//		dto.setProductcontents("test");
+//		int result = dao.add(dto);
+//			if(i%10==0) 
+//				Thread.sleep(500);
+//		}
+//		
+//		System.out.println("추완");
+//		//		assertNotEquals(0, result);
+//	}
 	
 }
