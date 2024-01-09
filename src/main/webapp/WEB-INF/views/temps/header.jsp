@@ -14,7 +14,7 @@
              <a class="nav-link active" aria-current="page" href="/">Home</a>
            </li>
            <li class="nav-item">
-             <a class="nav-link" href="/regions/list">Regions</a>
+             <a class="nav-link" href="/products/list">Products</a>
            </li>
            <li class="nav-item">
              <a class="nav-link" href="/departments/list">Departments</a>

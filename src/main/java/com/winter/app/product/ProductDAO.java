@@ -24,10 +24,12 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private final String namespace = "com.winter.app.product.ProductDAO.";
 	
+	public Integer total(ProductPager pager) throws Exception {
+		return sqlSession.selectOne(namespace+"total",pager);
+	}
 	
-	
-	public List<ProductDTO> list() throws Exception {
-		return sqlSession.selectList(namespace+"list");
+	public List<ProductDTO> list(ProductPager pager) throws Exception {
+		return sqlSession.selectList(namespace+"list",pager);
 	}
 	
 	public ProductDTO detail(ProductDTO productDTO) throws Exception {

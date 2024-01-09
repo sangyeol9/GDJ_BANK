@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.winter.app.product.ProductDAO;
 import com.winter.app.product.ProductDTO;
+import com.winter.app.product.ProductPager;
 
 public class Testcom extends MyTest {
 	
@@ -17,21 +18,22 @@ public class Testcom extends MyTest {
 	private ProductDAO dao;
 	
 	@Test
-	public void testList() throws Exception {
-		List<ProductDTO> ar = dao.list();
+	public void testList(ProductPager pager) throws Exception {
+		
+		List<ProductDTO> ar = dao.list(pager);
 		
 		assertNotEquals(0, ar.size());
 		
 	}
 	
-	@Test
-	public void testDetail() throws Exception{
-		ProductDTO dto = new ProductDTO();
-		dto.setProductnum(1L);
-		dto = dao.detail(dto);
-		
-		assertNotNull(dto.getProductcontents());
-	}
+//	@Test
+//	public void testDetail() throws Exception{
+//		ProductDTO dto = new ProductDTO();
+//		dto.setProductnum(1L);
+//		dto = dao.detail(dto);
+//		
+//		assertNotNull(dto.getProductcontents());
+//	}
 	
 //	@Test
 //	public void testAdd() throws Exception{

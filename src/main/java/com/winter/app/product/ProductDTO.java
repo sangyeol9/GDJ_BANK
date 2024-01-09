@@ -7,7 +7,7 @@ public class ProductDTO {
 	private String productcontents;
 	private Double productrate;
 	private Double productjumsu;
-	
+
 	public Long getProductnum() {
 		return productnum;
 	}
