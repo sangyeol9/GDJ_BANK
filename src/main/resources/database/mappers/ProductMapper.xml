@@ -49,24 +49,53 @@
   			 <include refid="search2"></include>
   			 ORDER BY PRODUCTNUM DESC) RG)
   			 WHERE R BETWEEN #{start_num} AND #{last_num}
-  			
+  		
   		</select>
   		
-  		<select id="detail" resultType="ProductDTO" parameterType="ProductDTO">
-  			SELECT * FROM PRODUCT WHERE PRODUCTNUM = #{productnum}
+  		<select id="detail" resultMap="getDetail" parameterType="ProductDTO">
+  			SELECT * FROM PRODUCTFILES PF
+			JOIN PRODUCT P
+			USING (PRODUCTNUM)
+			WHERE PRODUCTNUM = #{productnum}
   		</select>
+  		
+  		<resultMap type="ProductDTO" id="getDetail" >
+  			<id column="PRODUCTNUM" property="productnum"/>
+  			<result column="PRODUCTNAME" property="productname"/>
+  			<result column="PRODUCTCONTENTS" property="productcontents"/>
+ 			<result column="PRODUCTRATE" property="productrate" />
+ 			<result column="PRODUCTJUMSU" property="productjumsu"/>
+ 			<collection property="fileDTOs" javaType="List" ofType="FileDTO">
+ 				<id column="FILENUM" property="filenum"/>
+ 				<result column="FILENAME" property="filename"/>
+ 				<result column="ORINAME" property="oriname" />
+ 			</collection>
+ 			 </resultMap>
   		
   		<update id="update" parameterType="ProductDTO">
   			UPDATE PRODUCT SET PRODUCTNAME = #{productname} WHERE #{productnum}
   		</update>
   		
+  		<insert id="addFile" parameterType="FileDTO">
+  			
+  			 INSERT INTO PRODUCTFILES VALUES(PRODUCTFILES_SEQ.NEXTVAL,#{productnum},#{filename},#{oriname})
+  			 
+  		</insert>
+  		
   		<insert id="add" parameterType="ProductDTO">
+  		<selectKey keyProperty="productnum" order="BEFORE" resultType="Long">
+  				SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL 
+  			 </selectKey>
   			INSERT INTO PRODUCT VALUES(#{productnum},#{productname},#{productcontents},#{productrate},#{productjumsu} )
   		</insert>
   		
   		<delete id="delete" parameterType="ProductDTO">
-  			DELETE PRODUCT WHERE #{productnum}
+  			DELETE PRODUCT WHERE PRODUCTNUM =  #{productnum}
   		</delete>
+  		
+  		<select id="deleteList" resultType="FileDTO" parameterType="ProductDTO">
+  			SELECT * FROM PRODUCTFILES WHERE PRODUCTNUM = #{productnum}
+  		</select>
   		
   		<select id="total" resultType="Integer" parameterType="Pager">
   			SELECT COUNT(PRODUCTNUM) FROM PRODUCT

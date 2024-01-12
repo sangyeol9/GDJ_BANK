@@ -46,7 +46,7 @@
 				<c:forEach items="${requestScope.list}" var ="dto" >
 			<tr>
 					<td>${dto.productnum}</td>
-					<td>${dto.productname}</td>
+					<td><a href="detail?productnum=${dto.productnum}">${dto.productname}</a></td>
 					<td>${dto.productrate}</td>
 					<td>${dto.productjumsu}</td>
 				
@@ -78,6 +78,8 @@
 			  </ul>
 			</nav>
 		</div> 
+		
+		<a href="./add" class="btn btn-outline-success">ADD</a>
 		
 		<c:import url="../temps/bootstrap_js.jsp"></c:import> 
 </body>

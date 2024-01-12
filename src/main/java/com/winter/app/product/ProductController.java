@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping(value="/products/*")
@@ -39,13 +40,21 @@ public class ProductController {
 		return "products/add";
 	}
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String add(ProductDTO productDTO, Model model) throws Exception {
-	
+	public String add(ProductDTO productDTO, Model model,MultipartFile [] photo) throws Exception {
 		
-		int result = productService.addProduct(productDTO);
+		
+		int result = productService.addProduct(productDTO,photo);
 		model.addAttribute("result", result);
 		
 		return "result/result";
+	}
+	
+	@RequestMapping(value="delete",method = RequestMethod.POST)
+	public String delete(ProductDTO dto,Model model) throws Exception {
+		int result = productService.delete(dto);
+		model.addAttribute("result", result);
+	return "result/result";	
+	
 	}
 	
 }

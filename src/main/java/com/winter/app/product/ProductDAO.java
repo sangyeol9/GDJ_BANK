@@ -13,6 +13,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.winter.app.files.FileDTO;
 
 
 
@@ -23,6 +26,10 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String namespace = "com.winter.app.product.ProductDAO.";
+	
+	public List<ProductFileDTO> deleteList(ProductDTO dto){
+		return sqlSession.selectList(namespace+"deleteList",dto);
+	}
 	
 	public Integer total(ProductPager pager) throws Exception {
 		return sqlSession.selectOne(namespace+"total",pager);
@@ -36,7 +43,10 @@ public class ProductDAO {
 		return sqlSession.selectOne(namespace+"detail",productDTO);
 	}
 	
-	
+	public int addFile(ProductFileDTO dto) throws Exception{
+		return sqlSession.insert(namespace+"addFile",dto);
+		
+	}
 	
 	public int add(ProductDTO productDTO) throws Exception {
 		return sqlSession.insert(namespace+"add",productDTO);
