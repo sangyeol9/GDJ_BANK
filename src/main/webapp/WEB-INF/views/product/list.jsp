@@ -13,6 +13,23 @@
 <div class="container px-5 my-5">
     <div class="text-center mb-5">
         <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Product List</span></h1>
+        
+        <table>
+        	<tr>
+        		<th>num</th>
+        		<th>name</th>
+        		<th>rate</th>
+        	</tr>
+        
+        <c:forEach items="${list}" var="list">
+        <tr>
+        	<td>${list.productNum}</td>
+        	<td><a href="detail?productNum=${list.productNum}">${list.productName}</a></td>
+        	<td>${list.productRate}</td>		
+        </tr>
+        </c:forEach>
+        </table>
+        
     </div>
 <div>
     <a href="add">상품등록</a>
