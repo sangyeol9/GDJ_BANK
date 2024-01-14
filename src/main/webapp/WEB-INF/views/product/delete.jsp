@@ -18,15 +18,6 @@
             <!-- 사용전 경로를 꼭 수정하세요 -->
           <c:import url="../temps/header.jsp"></c:import>
         
-        <h1>product name = ${detail.productName}</h1>
-        
-        <div>
-        <a href="update"> 수정하기  </a>
-        </div>
-        <div>
-        <a href="delete?productNum=${detail.productNum}"> 삭제하기 </a>
-        </div>
-        
         </main>
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요 -->

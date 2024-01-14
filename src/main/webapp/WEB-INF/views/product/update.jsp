@@ -18,7 +18,7 @@
             <!-- 사용전 경로를 꼭 수정하세요 -->
           <c:import url="../temps/header.jsp"></c:import>
         
-          <section class="py-5">
+        	<section class="py-5">
             <div class="container px-5">
                 <!-- Contact form-->
                 <div class="bg-light rounded-4 py-5 px-4 px-md-5">
@@ -39,22 +39,22 @@
                             <form id="contactForm" action="add" method="post" enctype="multipart/form-data">
                                 <!-- 상품명 input-->
                                 <div class="form-floating mb-3">
-                                    <input name="productName" class="form-control" id="name" type="text"   />
+                                    <input name="productName" class="form-control" id="name" type="text" data-sb-validations="required,email"   />
                                     <label for="name">Product Name</label>
-                                   
+                                    <div class="invalid-feedback" data-sb-feedback="email:required">상품명 필수</div>
                                </div>
                                 <!-- 이자율 input-->
                                 <div class="form-floating mb-3">
-                                    <input name="productRate" class="form-control" id="rate" type="rate" />
+                                    <input name="productRate" class="form-control" id="rate" type="rate" data-sb-validations="required,rate"/>
                                     <label for="rate">Product Rate</label>
-                                   
+                                    <div class="invalid-feedback" data-sb-feedback="rate:required">상품 이자율 필수</div>
                                 </div>
                                 
                                 <!-- 설명 input-->
                                 <div class="form-floating mb-3">
-                                    <textarea name="productContents" class="form-control" id="contents" type="text" style="height: 10rem" ></textarea>
+                                    <textarea name="productContents" class="form-control" id="contents" type="text" style="height: 10rem" data-sb-validations="required,contents"></textarea>
                                     <label for="contents">Contents</label>
-                                    
+                                    <div class="invalid-feedback" data-sb-feedback="contents:required">상품설명 필수</div>
                                 </div>
                                 <!-- 첨부파일 -->
                                 <div class="form-floating mc-3">
@@ -67,7 +67,7 @@
                                 </div>
 
                                
-                               
+                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">상품 추가 실패!</div></div>
                                 <!-- Submit Button-->
                                 <div class="d-grid"><button class="btn btn-primary btn-lg " id="submitButton" type="submit">상품 등록</button></div>
                             </form>
@@ -76,10 +76,8 @@
                 </div>
             </div>
         </section>
-
-
-
-
+        
+        
         </main>
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요 -->

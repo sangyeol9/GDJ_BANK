@@ -4,12 +4,59 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.winter.app.product.ProductDAO">
-  	<select id="getList" resultType="ProductDTO">
-  		SELECT * FROM PRODUCT
+  
+  	<sql id="search2">
+  			<where>
+  			<if test="kind=='kind1' or kind=='kind4'">
+  			PRODUCTNAME LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind2' or kind=='kind4'">
+  			OR PRODUCTCONTENTS LIKE '%'||#{search}||'%'
+			</if>
+			<if test="kind=='kind3' or kind=='kind4'">
+  			OR PRODUCTRATE LIKE '%'||#{search}||'%'
+			</if>
+			</where>
+  		</sql>
+  
+  	<select id="getList" resultType="ProductDTO" parameterType="Pager">
+  		SELECT * FROM 
+  			(SELECT ROWNUM R,RG.* FROM
+  			(SELECT * FROM PRODUCT 
+  			 ORDER BY PRODUCTNUM DESC) RG)
+  			 WHERE R BETWEEN #{start_num} AND #{last_num}
   	</select>
   	
   	<select id="getDetail" resultType="ProductDTO" parameterType="ProductDTO" >
   		SELECT * FROM PRODUCT WHERE PRODUCTNUM = #{productNum}
   	</select>
+  	
+  	<insert id="setAdd" parameterType="ProductDTO">
+  	<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
+  			SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+  	</selectKey>
+  		INSERT INTO PRODUCT (PRODUCTNUM,PRODUCTNAME,PRODUCTCONTENTS,PRODUCTRATE) VALUES(#{productNum},#{productName},#{productContents},#{productRate})
+  	</insert>
+  	
+  	<update id="setUpdate" parameterType="ProductDTO" >
+  		UPDATE PRODUCT SET PRODUCTNAME = #{productName},PRODUCTCONTENTS= #{productContents},PRODUCTRATE=#{productRate}
+  	</update>
+  	
+  	<delete id="setDelete" parameterType="ProductDTO">
+  		DELETE PRODUCT WHERE PRODUCTNUM = #{productNum}
+  	</delete>
+  	
+  	<insert id="setAddFile" parameterType="ProductFileDTO">
+  		 INSERT INTO PRODUCTFILES VALUES(PRODUCTFILES_SEQ.NEXTVAL,#{productNum},#{fileName},#{oriName})
+  	</insert>
+  	
+  	<select id="total" resultType="Integer" parameterType="Pager">
+  	SELECT COUNT(PRODUCTNUM) FROM PRODUCT
+  
+  	</select>
+  	
+  	<select id="deleteList" resultType="ProductFileDTO" parameterType="ProductDTO">
+  			SELECT * FROM PRODUCTFILES WHERE PRODUCTNUM = #{productNum}
+  		</select>
   	
   </mapper>

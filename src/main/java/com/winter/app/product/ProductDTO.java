@@ -1,13 +1,24 @@
 package com.winter.app.product;
 
+import java.util.List;
+
 public class ProductDTO {
 	private Long productNum;
 	private String productName;
 	private String productContents;
+	public List<ProductFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<ProductFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 	private Double productRate;
 	private Double productJumsu;
 	private Long productCount;
 	private Long productSale;
+	
+	private List<ProductFileDTO> fileDTOs;
+	
 	public Long getProductNum() {
 		return productNum;
 	}
