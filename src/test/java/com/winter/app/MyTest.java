@@ -17,13 +17,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*-context.xml"})
 public class MyTest {
 
-//	@Autowired
-//	private DataSource dataSource;
-//	
-//	@Test
-//	public void test11() throws Exception {
-//		Connection con= dataSource.getConnection();
-//		assertNotNull(con);
-//	}
+	@Autowired
+	private DataSource dataSource;
+	
+	@Test
+	public void test11() throws Exception {
+		Connection con= dataSource.getConnection();
+		assertNotNull(con);
+	}
 
 }

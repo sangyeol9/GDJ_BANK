@@ -4,5 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
   
   <configuration>
-  
+  	<typeAliases>
+  		<typeAlias type="com.winter.app.product.ProductDTO" alias = "ProductDTO"/>
+  		<typeAlias type="com.winter.app.product.ProductFileDTO" alias = "ProductFileDTO"/>
+  		<typeAlias type="com.winter.app.util.Paser" alias = "Pager"/>
+	</typeAliases>
   </configuration>
