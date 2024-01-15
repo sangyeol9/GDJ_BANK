@@ -24,22 +24,25 @@
                                 <th>no</th>
                                 <th>title</th>
                                 <th>writter</th>
-                                <th>time</th>
-                                
+                                <th>time</th> 
                                 <th>view</th>
                             </tr>
                             
                            <c:forEach items="${list}" var="dto">
                            	<tr>
                            		<td>${dto.notice_Num}</td>
-                           		<td>${dto.notice_Title}</td>
+                           		<td><a href="detail?notice_Num=${dto.notice_Num}">${dto.notice_Title}</a></td>
                            		<td>${dto.notice_Writter}</td>
                            		<td>${dto.notice_Time}</td>
-                           		
                            		<td>${dto.notice_View}</td>
                            		</tr>
                            </c:forEach>
                         </table>
+                        
+                        <div>
+                        	<a href="add" class="btn btn-primary">글 쓰기</a>
+                        </div>
+                        
                 </div>
             </div>
         </section>

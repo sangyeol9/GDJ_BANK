@@ -11,6 +11,30 @@
   				SELECT * FROM NOTICE
   				ORDER BY NOTICE_NUM DESC) N)
   	WHERE R BETWEEN #{start_num} AND #{last_num}
+  	</select >
+  	<resultMap type="NoticeDTO" id="getDetailResult">
+  		<id column="NOTICE_NUM" property="notice_Num"></id>
+  		<result column="NOTICE_TITLE" property="notice_Title"/>
+  		<result column="NOTICE_WRITTER" property="notice_Writter" />
+  		<result column="NOTICE_TIME" property="notice_Time"/>
+  		<result column="NOTICE_CONTENTS" property="notice_Contents"/>
+  		<result column="NOTICE_VIEW" property="notice_View"/>
+  		<collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+  			<id column="FILENUM" property="fileNum"></id>
+  			<result column="FILENAME" property="fileName" />
+  			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
+  		SELECT * FROM  NOTICE
+  		LEFT OUTER JOIN
+  		NOTICEFILES NF
+  		USING (NOTICE_NUM)
+  		WHERE NOTICE_NUM = #{notice_Num}
   	</select>
-  
+  	
+  	<insert id="setAdd" parameterType="BoardDTO">
+  		INSERT INTO NOTICE (NOTICE_NUM,NOTICE_TITLE,NOTICE_WRITTER,NOTICE_CONTENTS) VALUES (NOTICE_SEQ.NEXTVAL,#{notice_Title},#{notice_Writter},#{notice_Contents})
+  	</insert>
+  	
   </mapper>

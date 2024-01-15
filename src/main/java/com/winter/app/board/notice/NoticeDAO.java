@@ -31,15 +31,15 @@ public class NoticeDAO implements BoardDAO{
 	}
 
 	@Override
-	public Object getDetail(BoardDTO dto) throws Exception {
+	public BoardDTO getDetail(BoardDTO dto) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"getDetail",dto);
 	}
 
 	@Override
 	public int setAdd(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	
+		return sqlSession.insert(namespace+"setAdd",dto);
 	}
 
 	@Override

@@ -13,8 +13,8 @@ public interface BoardDAO {
 	//목록
 	public List<BoardDTO> getList(Paser pager) throws Exception;
 	
-	public Object getDetail(BoardDTO dto) throws Exception;
-	
+	public BoardDTO getDetail(BoardDTO dto) throws Exception;
+	// public NoitceDTO 
 	public int setAdd(BoardDTO dto) throws Exception;
 	
 	public int setUpdate(BoardDTO dto) throws Exception;

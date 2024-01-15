@@ -1,11 +1,23 @@
 package com.winter.app.board.qna;
 
+import java.util.List;
+
 import com.winter.app.board.BoardDTO;
+import com.winter.app.board.BoardFileDTO;
 
 public class QnaDTO extends BoardDTO {
 	private Long notice_Ref;
 	private Long notice_Step;
 	private Long notice_Depth;
+	private List<BoardFileDTO> fileDTOs;
+
+	public List<BoardFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+
+	public void setFileDTOs(List<BoardFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 	public Long getNotice_Ref() {
 		return notice_Ref;
 	}
