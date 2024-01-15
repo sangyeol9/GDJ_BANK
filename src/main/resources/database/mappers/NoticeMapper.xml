@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.winter.app.board.notice.NoticeDAO">
+  	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+  	SELECT * FROM
+  		(SELECT ROWNUM R ,N.* FROM
+  			(
+  				SELECT * FROM NOTICE
+  				ORDER BY NOTICE_NUM DESC) N)
+  	WHERE R BETWEEN #{start_num} AND #{last_num}
+  	</select>
+  
+  </mapper>

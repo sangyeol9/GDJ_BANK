@@ -2,11 +2,13 @@ package com.winter.app.board;
 
 import java.util.List;
 
+import com.winter.app.util.Paser;
+
 public interface BoardService {
 
 	
 	//목록
-	public List<Object> getList() throws Exception;
+	public List<BoardDTO> getList(Paser pager) throws Exception;
 	
 	public Object getDetail(BoardDTO dto) throws Exception;
 	

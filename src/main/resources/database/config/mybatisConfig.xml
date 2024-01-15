@@ -8,5 +8,7 @@
   		<typeAlias type="com.winter.app.product.ProductDTO" alias = "ProductDTO"/>
   		<typeAlias type="com.winter.app.product.ProductFileDTO" alias = "ProductFileDTO"/>
   		<typeAlias type="com.winter.app.util.Paser" alias = "Pager"/>
+  		<typeAlias type="com.winter.app.board.notice.NoticeDTO" alias = "NoticeDTO"/>
+  		<typeAlias type="com.winter.app.board.qna.QnaDTO" alias = "QnaDTO"/>
 	</typeAliases>
   </configuration>

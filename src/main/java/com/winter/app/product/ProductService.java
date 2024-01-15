@@ -17,7 +17,7 @@ public class ProductService {
 		@Autowired
 		private ProductDAO productDAO;
 		
-		@Autowired
+		//@Autowired
 		private ServletContext context;
 		
 		@Autowired
