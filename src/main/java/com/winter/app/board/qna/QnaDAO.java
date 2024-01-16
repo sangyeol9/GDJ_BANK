@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.winter.app.board.BoardDAO;
 import com.winter.app.board.BoardDTO;
+import com.winter.app.board.BoardFileDTO;
 import com.winter.app.util.Paser;
 
 @Repository("ba")
@@ -41,9 +42,33 @@ public class QnaDAO implements BoardDAO {
 	}
 	@Override
 	public int setDelete(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.update(namespace+"setDelete",dto);
 	}
 	
+	public int setFileDelete(BoardDTO dto) throws Exception {
+		return sqlSession.delete(namespace+"setFileDelete",dto);
+	}
+	
+	public List<BoardFileDTO> getFileList(BoardDTO dto) throws Exception{
+		return sqlSession.selectList(namespace+"getFileList",dto);
+	}
+	
+	public int setReplyUpdate(QnaDTO dto) throws Exception{
+		return sqlSession.update(namespace+"setReplyUpdate",dto);
+		
+	}
+	
+	public int setReplyAdd(QnaDTO dto) throws Exception{
+		return sqlSession.insert(namespace+"setReplyAdd",dto);
+	}
+	
+	public int setReplyFileAdd(BoardFileDTO dto) throws Exception{
+		return sqlSession.insert(namespace+"setReplyFileAdd",dto);
+	}
+	
+	public int setFileAdd(BoardFileDTO dto) throws Exception{
+		return sqlSession.insert(namespace+"setFileAdd",dto);
+	}
 	
 }

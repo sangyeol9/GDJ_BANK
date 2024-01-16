@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.winter.app.board.BoardDAO;
 import com.winter.app.board.BoardDTO;
+import com.winter.app.board.BoardFileDTO;
 import com.winter.app.util.Paser;
 
 
@@ -51,9 +52,11 @@ public class NoticeDAO implements BoardDAO{
 	@Override
 	public int setDelete(BoardDTO dto) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(namespace+"setDelete",dto);
 	}
 
-	
+	public int setFileAdd(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.insert(namespace+"setFileAdd",boardFileDTO);
+	}
 	
 }

@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.BoardService;
@@ -21,12 +24,45 @@ public class QnaController {
 	@Autowired
 	@Qualifier("qnaService")
 	private BoardService boardService;
+	@Autowired
+	private QnaService qnaService;
+	@GetMapping("reply")
+	public String setReply(BoardDTO dto,Model model) throws Exception{
+		
+		model.addAttribute("dto", dto);
+		
+		return "board/reply";
+	}
+	
+	@ModelAttribute("bbs")
+	public Integer getKind() {
+		return 1;
+	}
+	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "qna";
+	}
+	@PostMapping("delete")
+	public String setDelete(QnaDTO dto) throws Exception {
+		dto.setFlag(Integer.valueOf(1));
+		int result = qnaService.setDelete(dto);
+		return "redirect:./list";
+	}
+	
+	@PostMapping("reply")
+	public String setReply(QnaDTO dto,MultipartFile [] attach) throws Exception{
+		int result = qnaService.setReply(dto,attach);
+		
+		return "redirect:./list";
+	}
 	
 	@GetMapping("list")
 	public String getList(Paser pager,Model model) throws Exception {
 		List<BoardDTO> ar = boardService.getList(pager);
 		
 		model.addAttribute("list", ar);
+		
 		return "board/list";
 	}
 	
@@ -44,8 +80,8 @@ public class QnaController {
 		return "board/add";
 	}
 	@PostMapping("add")
-	public String setAdd(BoardDTO dto) throws Exception{
-		int result = boardService.setAdd(dto);
+	public String setAdd(BoardDTO dto,MultipartFile [] attach) throws Exception{
+		int result = boardService.setAdd(dto,attach);
 		
 		return "redirect:./list";
 	}

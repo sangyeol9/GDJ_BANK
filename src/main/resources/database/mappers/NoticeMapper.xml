@@ -25,6 +25,16 @@
   			<result column="ORINAME" property="oriName"/>
   		</collection>
   	</resultMap>
+  	
+  	<insert id="setFileAdd" parameterType="BoardFileDTO">
+  	
+  		INSERT INTO NOTICEFILES (FILENUM,NOTICE_NUM,FILENAME,ORINAME) VALUES (NOTICE_SEQ.NEXTVAL,#{notice_Num},#{fileName},#{oriName})
+  	</insert>
+  	
+  	<delete id="setDelete" parameterType="BoardDTO">
+  		DELETE NOTICE WHERE NOTICE_NUM = #{notice_Num}
+  	</delete>
+  	
   	<select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
   		SELECT * FROM  NOTICE
   		LEFT OUTER JOIN
@@ -34,7 +44,10 @@
   	</select>
   	
   	<insert id="setAdd" parameterType="BoardDTO">
-  		INSERT INTO NOTICE (NOTICE_NUM,NOTICE_TITLE,NOTICE_WRITTER,NOTICE_CONTENTS) VALUES (NOTICE_SEQ.NEXTVAL,#{notice_Title},#{notice_Writter},#{notice_Contents})
+  		<selectKey keyProperty="notice_Num" order="BEFORE" resultType="Long">
+  			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO NOTICE (NOTICE_NUM,NOTICE_TITLE,NOTICE_WRITTER,NOTICE_CONTENTS) VALUES (#{notice_Num},#{notice_Title},#{notice_Writter},#{notice_Contents})
   	</insert>
   	
   </mapper>

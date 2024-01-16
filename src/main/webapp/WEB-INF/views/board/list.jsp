@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Board List</title>
+<title>${board} List</title>
 <c:import url="../temps/head_css.jsp"></c:import>
 </head>
 <body>
@@ -14,7 +14,7 @@
         <section class="py-5">
             <div class="container px-5 mb-5">
                 <div class="text-center mb-5">
-                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Board  List</span></h1>
+                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}  List</span></h1>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-11 col-xl-9 col-xxl-8">
@@ -31,7 +31,15 @@
                            <c:forEach items="${list}" var="dto">
                            	<tr>
                            		<td>${dto.notice_Num}</td>
-                           		<td><a href="detail?notice_Num=${dto.notice_Num}">${dto.notice_Title}</a></td>
+                           		<td>
+                           			<a href="detail?notice_Num=${dto.notice_Num}">
+                           				<c:catch>
+                           				<c:forEach begin="1" end="${dto.notice_Depth}"> -- </c:forEach>
+                           				</c:catch>
+                           				${dto.notice_Title}
+                           				
+                           			</a>
+                          		</td>
                            		<td>${dto.notice_Writter}</td>
                            		<td>${dto.notice_Time}</td>
                            		<td>${dto.notice_View}</td>
