@@ -3,18 +3,19 @@ package com.winter.app.board.notice;
 import java.util.List;
 
 import com.winter.app.board.BoardDTO;
-import com.winter.app.board.BoardFileDTO;
 
-public class NoticeDTO extends BoardDTO{
+public class NoticeDTO extends BoardDTO {
+	
+	
+	private List<BoardDTO> fileDTOs;
 
-	private List<BoardFileDTO> fileDTOs;
-
-	public List<BoardFileDTO> getFileDTOs() {
+	public List<BoardDTO> getFileDTOs() {
 		return fileDTOs;
 	}
 
-	public void setFileDTOs(List<BoardFileDTO> fileDTOs) {
+	public void setFileDTOs(List<BoardDTO> fileDTOs) {
 		this.fileDTOs = fileDTOs;
 	}
+	
 	
 }
