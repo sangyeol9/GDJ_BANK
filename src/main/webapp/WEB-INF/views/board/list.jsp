@@ -35,7 +35,7 @@
                            			<a href="detail?notice_Num=${dto.notice_Num}">
                            				<c:catch>
                            				<c:forEach begin="1" end="${dto.notice_Depth}"> -- </c:forEach>
-                           				</c:catch>
+</c:catch>
                            				${dto.notice_Title}
                            				
                            			</a>
@@ -46,27 +46,28 @@
                            		</tr>
                            </c:forEach>
                         </table>
-                        
+
                         <div>
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination">
 							    <c:if test="${page.start_page != 1}">
 							    <li class="page-item ">
-							      <a class="page-link" href="list?page=${page.start_page-1}&search=${page.search}&kind=${page.kind}" aria-label="Previous">
-							        <span aria-hidden="true">&laquo;</span>
+							      <a class="page-link " href="list?page=${page.start_page-1}&search=${page.search}&kind=${page.kind}" aria-label="Previous"
+                                  >
+							        <span class = 'pager' aria-hidden="true" data-page="${page.start_page-1}">&laquo;</span>
 							      </a>
 							    </li>
 							    </c:if>
 							    <c:forEach begin="${page.start_page}" end="${page.last_page}"   var = "i">
-							    <li class="page-item"><a class="page-link" href="list?page=${i}&search=${page.search}&kind=${page.kind}">${i}</a></li>
+							    <li class="page-item "><a class="page-link pager" href="list?page=${i}&search=${page.search}&kind=${page.kind}" data-page="${i}">${i}</a></li>
 							    </c:forEach>
-							    <c:if test="${page.start_page != page.totalBlock*page.perBlock-(page.perBlock-1)}">
+                                <c:if test="${page.start_page != page.totalBlock*page.perBlock-(page.perBlock-1)}">
 							    <li class="page-item">
-							      <a class="page-link" href="list?page=${page.last_page+1}&search=${page.search}&kind=${page.kind}" aria-label="Next">
-							        <span aria-hidden="true">&raquo;</span>
+							      <a class="page-link " href="list?page=${page.last_page+1}&search=${page.search}&kind=${page.kind}" aria-label="Next">
+							        <span class="pager" aria-hidden="true" data-page="${page.last_page+1}">&raquo;</span>
 							      </a>
 							    </li>
-							    </c:if>
+							   </c:if>
 							  </ul>
 							</nav>
 						</div> 
@@ -81,5 +82,6 @@
 
     
 <c:import url="../temps/footer.jsp"></c:import>
+<script src="/resources/js/boardSearch.js"></script>
 </body>
 </html>
