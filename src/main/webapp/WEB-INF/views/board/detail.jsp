@@ -30,10 +30,10 @@
                             <div class="card-body p-0">
                                 <div class="d-flex align-items-center">
                                     <div class="p-5">
-                                        <h2 class="fw-bolder">${detail.notice_Title}</h2>
+                                        <h2 class="fw-bolder"><code>${detail.notice_Title}</code></h2>
                                    		<div>
                                    			<h3>내용</h3>
-                                   			${detail.notice_Contents}
+                                   			<pre>${detail.notice_Contents}</pre>
                                    		</div>
 
                                         <div>

@@ -59,10 +59,21 @@ public class NoticeService implements BoardService {
 		pager.setStart_page(startNum);
 		pager.setLast_page(lastNum);
 		
+		
+		
 		return boardDAO.getList(pager);
 		
 	}
 
+	public BoardDTO setTag(BoardDTO dto) throws Exception {
+		dto.setNotice_Title(dto.getNotice_Title().replaceAll("<", "&lt").replaceAll(">", "&gt"));
+		if(dto.getNotice_Contents() != null)
+		dto.setNotice_Contents(dto.getNotice_Contents().replaceAll("<", "&lt").replaceAll(">", "&gt"));
+		if(dto.getNotice_Writter() != null)
+		dto.setNotice_Writter(dto.getNotice_Writter().replaceAll("<", "&lt").replaceAll(">", "&gt"));;
+		return dto;
+	}
+	
 	@Override
 	public BoardDTO getDetail(BoardDTO dto) throws Exception {
 		// TODO Auto-generated method stub

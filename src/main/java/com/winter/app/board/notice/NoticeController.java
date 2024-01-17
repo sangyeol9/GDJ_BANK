@@ -26,6 +26,8 @@ public class NoticeController {
 	@Autowired
 	@Qualifier("noticeService")
 	private BoardService boardService;
+	@Autowired
+	private NoticeService noticeService;
 	
 	@ModelAttribute("bbs")
 	public Integer getKind() {
@@ -63,6 +65,9 @@ public class NoticeController {
 	public String getList(Paser pager,Model model) throws Exception{
 		List<BoardDTO> ar =  boardService.getList(pager);
 		
+		for(BoardDTO a : ar) {
+			noticeService.setTag(a);
+		}
 		
 		model.addAttribute("list", ar);
 		model.addAttribute("page", pager);
@@ -72,6 +77,8 @@ public class NoticeController {
 	@GetMapping("detail")
 	public String getDetail(BoardDTO dto,Model model) throws Exception{
 		dto =  boardService.getDetail(dto);
+		
+		noticeService.setTag(dto);
 		
 		model.addAttribute("detail", dto);
 		return "board/detail";

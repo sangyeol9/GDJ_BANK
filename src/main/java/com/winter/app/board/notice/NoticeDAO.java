@@ -63,4 +63,6 @@ public class NoticeDAO implements BoardDAO{
 		return sqlSession.insert(namespace+"setFileAdd",boardFileDTO);
 	}
 	
+	
+	
 }
