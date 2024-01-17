@@ -16,6 +16,30 @@
                 <div class="text-center mb-5">
                     <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}  List</span></h1>
                 </div>
+                
+                <div>
+			
+				<form class="row g-3" action="list" method="get">
+					<div class = "col-auto">
+					  <select name="kind" class="form-select" aria-label="Default select example">
+					  <option value="kind1">name</option>
+					  <option value="kind2">contents</option>
+					  <option value="kind3">Writter</option>
+					  <option value="kind4">name+writer+contents</option>
+						</select>
+						<!-- JS를 사용하여 ATRRIBUTE 값을 넣어준다! -->
+					</div>
+				  <div class="col-auto">
+				    <label for="search" class="visually-hidden">search</label>
+				    <input type="text" name="search" class="form-control" id="search" placeholder="search" value="${page.search}">
+				  </div>
+				  <div class="col-auto">
+				    <button type="submit" class="btn btn-primary mb-3">검색</button>
+				  </div>
+				</form>
+			
+				</div>
+                
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-11 col-xl-9 col-xxl-8">
                         <!-- Project Card 1-->
@@ -27,6 +51,12 @@
                                 <th>time</th> 
                                 <th>view</th>
                             </tr>
+                            <c:if test="${list.size()==0}">
+                            <tr>
+                            	<td colspan="5">검색결과가 없습니다.</td>
+                            	
+                            </tr>
+                            </c:if>
                             
                            <c:forEach items="${list}" var="dto">
                            	<tr>

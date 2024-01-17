@@ -34,6 +34,7 @@ public class NoticeService implements BoardService {
 		pager.makeRow();
 		Integer totalCount = boardDAO.getTotalCount();
 		System.out.println(totalCount);
+		if(totalCount<1) totalCount=1;
 		Integer totalPage= totalCount/pager.getPager();
 		if(totalCount%pager.getPager() != 0) totalPage++;
 		pager.setTotalPage(totalPage);
