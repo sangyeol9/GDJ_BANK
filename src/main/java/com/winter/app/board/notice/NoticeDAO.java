@@ -19,11 +19,7 @@ public class NoticeDAO implements BoardDAO{
 	private SqlSession sqlSession;
 	private String namespace = "com.winter.app.board.notice.NoticeDAO.";
 	
-	@Override
-	public Long getTotalCount() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<BoardDTO> getList(Paser pager) throws Exception {
@@ -44,9 +40,17 @@ public class NoticeDAO implements BoardDAO{
 	}
 
 	@Override
+	public Integer getTotalCount() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"getTotalCount");
+	}
+	
+	
+
+	@Override
 	public int setUpdate(BoardDTO dto) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(namespace+"setUpdate",dto);
 	}
 
 	@Override

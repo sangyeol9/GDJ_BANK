@@ -16,7 +16,7 @@ public interface BoardService {
 	
 	public int setAdd(BoardDTO dto,MultipartFile [] attach) throws Exception;
 	
-	public int setUpdate(BoardDTO dto) throws Exception;
+	public int setUpdate(BoardDTO dto,MultipartFile [] attach) throws Exception;
 	
 	public int setDelete(BoardDTO dto) throws Exception;
 	

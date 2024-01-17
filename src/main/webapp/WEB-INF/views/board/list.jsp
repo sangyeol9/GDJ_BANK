@@ -48,6 +48,30 @@
                         </table>
                         
                         <div>
+							<nav aria-label="Page navigation example">
+							  <ul class="pagination">
+							    <c:if test="${page.start_page != 1}">
+							    <li class="page-item ">
+							      <a class="page-link" href="list?page=${page.start_page-1}&search=${page.search}&kind=${page.kind}" aria-label="Previous">
+							        <span aria-hidden="true">&laquo;</span>
+							      </a>
+							    </li>
+							    </c:if>
+							    <c:forEach begin="${page.start_page}" end="${page.last_page}"   var = "i">
+							    <li class="page-item"><a class="page-link" href="list?page=${i}&search=${page.search}&kind=${page.kind}">${i}</a></li>
+							    </c:forEach>
+							    <c:if test="${page.start_page != page.totalBlock*page.perBlock-(page.perBlock-1)}">
+							    <li class="page-item">
+							      <a class="page-link" href="list?page=${page.last_page+1}&search=${page.search}&kind=${page.kind}" aria-label="Next">
+							        <span aria-hidden="true">&raquo;</span>
+							      </a>
+							    </li>
+							    </c:if>
+							  </ul>
+							</nav>
+						</div> 
+                        
+                        <div>
                         	<a href="add" class="btn btn-primary">글 쓰기</a>
                         </div>
                         

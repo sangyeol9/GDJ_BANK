@@ -28,10 +28,35 @@ public class NoticeService implements BoardService {
 	private FileManager fileManager;
 	@Autowired
 	private ServletContext context;
+	
 	@Override
 	public List<BoardDTO> getList(Paser pager) throws Exception {
 		pager.makeRow();
+		Integer totalCount = boardDAO.getTotalCount();
+		System.out.println(totalCount);
+		Integer totalPage= totalCount/pager.getPager();
+		if(totalCount%pager.getPager() != 0) totalPage++;
+		pager.setTotalPage(totalPage);
+		System.out.println(pager.getTotalPage() + "totalpage");
 		
+		pager.setPerBlock(5);
+		Integer totalBlock  = pager.getTotalPage() / pager.getPerBlock();
+		if(pager.getTotalPage() % pager.getPerBlock() != 0 ) totalBlock++;
+		pager.setTotalBlock(totalBlock);
+		System.out.println(pager.getTotalBlock());
+		
+		Integer curBlock = pager.getPage() / pager.getPerBlock();
+		if(pager.getPage()%pager.getPerBlock() != 0 )curBlock++;
+		System.out.println(curBlock);
+	
+		
+		Integer lastNum = curBlock * pager.getPerBlock();
+		Integer startNum = lastNum-pager.getPerBlock() +1;
+		if(lastNum > pager.getTotalPage()) lastNum = pager.getTotalPage();
+		System.out.println(startNum);
+		System.out.println(lastNum);
+		pager.setStart_page(startNum);
+		pager.setLast_page(lastNum);
 		
 		return boardDAO.getList(pager);
 		
@@ -68,9 +93,10 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int setUpdate(BoardDTO dto,MultipartFile [] attach) throws Exception {
+		//hdd 파일 저장
+		
+		return boardDAO.setUpdate(dto);
 	}
 
 	@Override

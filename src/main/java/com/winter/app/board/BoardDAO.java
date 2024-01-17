@@ -8,7 +8,7 @@ public interface BoardDAO {
 
 	//totalCount
 	
-	public Long getTotalCount() throws Exception;
+	public Integer getTotalCount() throws Exception;
 	
 	//목록
 	public List<BoardDTO> getList(Paser pager) throws Exception;
@@ -20,5 +20,6 @@ public interface BoardDAO {
 	public int setUpdate(BoardDTO dto) throws Exception;
 	
 	public int setDelete(BoardDTO dto) throws Exception;
+	
 	
 }

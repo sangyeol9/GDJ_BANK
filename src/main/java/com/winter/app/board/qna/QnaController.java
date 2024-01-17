@@ -34,6 +34,8 @@ public class QnaController {
 		return "board/reply";
 	}
 	
+	
+	
 	@ModelAttribute("bbs")
 	public Integer getKind() {
 		return 1;
@@ -43,6 +45,21 @@ public class QnaController {
 	public String getBoard() {
 		return "qna";
 	}
+	
+	@GetMapping
+	public String setUpdate(BoardDTO dto , Model model) throws Exception{
+		dto = boardService.getDetail(dto);
+		model.addAttribute("dto", dto);
+		return "board/update";
+	}
+	
+	@PostMapping
+	public String setUpdate(BoardDTO dto , Model model , MultipartFile [] attach) throws Exception{
+		boardService.setUpdate(dto, attach);
+		
+		return "redirect:./list";
+	}
+	
 	@PostMapping("delete")
 	public String setDelete(QnaDTO dto) throws Exception {
 		dto.setFlag(Integer.valueOf(1));

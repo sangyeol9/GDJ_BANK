@@ -31,6 +31,19 @@
   		INSERT INTO NOTICEFILES (FILENUM,NOTICE_NUM,FILENAME,ORINAME) VALUES (NOTICE_SEQ.NEXTVAL,#{notice_Num},#{fileName},#{oriName})
   	</insert>
   	
+  	<update id="setUpdate" parameterType="BoardDTO">
+  		UPDATE NOTICE 	 
+  		<set>
+  		<if test="notice_Title != null and notice_Title != '' ">
+  		NOTICE_TITLE = #{notice_Title},
+  		</if>
+  		<if test="notice_Contents != null and notice_Contents != '' ">
+  		NOTICE_CONTENTS = #{notice_Contents}
+  		</if>
+  		</set>
+  		WHERE NOTICE_NUM = #{notice_Num}
+  	</update>
+  	
   	<delete id="setDelete" parameterType="BoardDTO">
   		DELETE NOTICE WHERE NOTICE_NUM = #{notice_Num}
   	</delete>
@@ -41,6 +54,10 @@
   		NOTICEFILES NF
   		USING (NOTICE_NUM)
   		WHERE NOTICE_NUM = #{notice_Num}
+  	</select>
+  	
+  	<select id="getTotalCount" resultType="Integer">
+  		SELECT COUNT(NOTICE_NUM) FROM NOTICE
   	</select>
   	
   	<insert id="setAdd" parameterType="BoardDTO">

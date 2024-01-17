@@ -48,7 +48,7 @@
   	<resultMap type="QnaDTO" id="QnaGetDetail">
   		<id column="NOTICE_NUM" property="notice_Num"></id>
   		<result column="NOTICE_TITLE" property="notice_Title"/>
-  		<result column="NOTICE_CONTETNS" property="notice_Contents"/>
+  		<result column="NOTICE_CONTENTS" property="notice_Contents"/>
   		<result column="NOTICE_WRITTER" property="notice_Writter"/>
   		<result column="NOTICE_TIME" property="notice_Time"/>
   		<result column="NOTICE_VIEW" property="notice_View"/>
@@ -63,13 +63,26 @@
   	
   	</resultMap>
  
-  	<select id="getDetail" resultMap="QnaGetDetail" parameterType="QnaDTO">
+  	<select id="getDetail" resultMap="QnaGetDetail" parameterType="BoardDTO">
   		SELECT * FROM QNA
   		LEFT OUTER JOIN
   		QNAFILES
   		USING (NOTICE_NUM)
   		WHERE NOTICE_NUM = #{notice_Num}
   	</select> 
+  	
+  	<update id="setUpdate" parameterType="BoardDTO">
+  		UPDATE QNA
+  		<set> 
+  			<if test="notice_Title != ''">
+  			NOTICE_TITLE = #{notice_Title},
+  			</if>
+  			<if test = "notice_Contents != null">	
+  			NOTICE_CONTENTS = #{notice_Contents}
+  			</if>
+  		</set>
+  		WHERE NOTICE_NUM = #{notice_Num}
+  	</update>
   	
 	<!-- 파일 삭제 -->  	
   	<!-- 파일 리스트 가져오기 -->

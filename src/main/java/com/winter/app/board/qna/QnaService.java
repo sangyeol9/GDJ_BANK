@@ -66,9 +66,9 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO dto) throws Exception {
+	public int setUpdate(BoardDTO dto,MultipartFile [] attach) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return boardDAO.setUpdate(dto);
 	}
 
 	@Override

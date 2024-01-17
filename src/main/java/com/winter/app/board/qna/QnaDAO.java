@@ -17,11 +17,7 @@ public class QnaDAO implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private String namespace = "com.winter.app.board.qna.QnaDAO.";
-	@Override
-	public Long getTotalCount() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	@Override
 	public List<BoardDTO> getList(Paser pager) throws Exception {
 		return sqlSession.selectList(namespace+"getList",pager);
@@ -38,8 +34,15 @@ public class QnaDAO implements BoardDAO {
 	@Override
 	public int setUpdate(BoardDTO dto) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(namespace+"setUpdate",dto);
 	}
+	
+	@Override
+	public Integer getTotalCount( ) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public int setDelete(BoardDTO dto) throws Exception {
 		
