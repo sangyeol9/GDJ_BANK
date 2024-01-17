@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.winter.app.board.notice.NoticeDAO">
+  
+  	<sql id="search2">
+  			<where>
+  			<if test="kind=='kind1' or kind=='kind4'">
+  			NOTICE_TITLE LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind2' or kind=='kind4'">
+  			OR NOTICE_CONTENTS LIKE '%'||#{search}||'%'
+			</if>
+			<if test="kind=='kind3' or kind=='kind4'">
+  			OR NOTICE_WRITTER LIKE '%'||#{search}||'%'
+			</if>
+			</where>
+  		</sql>
+  
+  	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+  	SELECT * FROM
+  		(SELECT ROWNUM R ,N.* FROM
+  			(
+  				SELECT * FROM NOTICE
+  				 <include refid="search2"></include>
+  				ORDER BY NOTICE_NUM DESC) N)
+  	WHERE R BETWEEN #{start_num} AND #{last_num}
+  	</select >
+  	<resultMap type="NoticeDTO" id="getDetailResult">
+  		<id column="NOTICE_NUM" property="notice_Num"></id>
+  		<result column="NOTICE_TITLE" property="notice_Title"/>
+  		<result column="NOTICE_WRITTER" property="notice_Writter" />
+  		<result column="NOTICE_TIME" property="notice_Time"/>
+  		<result column="NOTICE_CONTENTS" property="notice_Contents"/>
+  		<result column="NOTICE_VIEW" property="notice_View"/>
+  		<collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+  			<id column="FILENUM" property="fileNum"></id>
+  			<result column="FILENAME" property="fileName" />
+  			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<insert id="setFileAdd" parameterType="BoardFileDTO">
+  	
+  		INSERT INTO NOTICEFILES (FILENUM,NOTICE_NUM,FILENAME,ORINAME) VALUES (NOTICE_SEQ.NEXTVAL,#{notice_Num},#{fileName},#{oriName})
+  	</insert>
+  	
+  	<update id="setUpdate" parameterType="BoardDTO">
+  		UPDATE NOTICE 	 
+  		<set>
+  		<if test="notice_Title != null and notice_Title != '' ">
+  		NOTICE_TITLE = #{notice_Title},
+  		</if>
+  		<if test="notice_Contents != null and notice_Contents != '' ">
+  		NOTICE_CONTENTS = #{notice_Contents}
+  		</if>
+  		</set>
+  		WHERE NOTICE_NUM = #{notice_Num}
+  	</update>
+  	
+  	<delete id="setDelete" parameterType="BoardDTO">
+  		DELETE NOTICE WHERE NOTICE_NUM = #{notice_Num}
+  	</delete>
+  	
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
+  		SELECT * FROM  NOTICE
+  		LEFT OUTER JOIN
+  		NOTICEFILES NF
+  		USING (NOTICE_NUM)
+  		WHERE NOTICE_NUM = #{notice_Num}
+  	</select>
+  	
+  	<select id="getTotalCount" resultType="Integer">
+  		SELECT COUNT(NOTICE_NUM) FROM NOTICE
+  	</select>
+  	
+  	<insert id="setAdd" parameterType="BoardDTO">
+  		<selectKey keyProperty="notice_Num" order="BEFORE" resultType="Long">
+  			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO NOTICE (NOTICE_NUM,NOTICE_TITLE,NOTICE_WRITTER,NOTICE_CONTENTS) VALUES (#{notice_Num},#{notice_Title},#{notice_Writter},#{notice_Contents})
+  	</insert>
+  	
+  </mapper>

@@ -17,7 +17,7 @@ public class ProductService {
 		@Autowired
 		private ProductDAO productDAO;
 		
-		@Autowired
+		//@Autowired
 		private ServletContext context;
 		
 		@Autowired
@@ -52,7 +52,7 @@ public class ProductService {
 			Integer lastnum=0;
 			lastnum = curBlock*pager.getPerBlock();
 			startnum = lastnum - (pager.getPerBlock()-1);
-			if(lastnum>pager.getTotalPage())
+			if(lastnum>pager.getTotalPage())	
 				lastnum = pager.getTotalPage();
 			pager.setLast_page(lastnum);
 			pager.setStart_page(startnum);
