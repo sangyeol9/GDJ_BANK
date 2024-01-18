@@ -64,7 +64,7 @@
                            		<td>
                            			<a href="detail?notice_Num=${dto.notice_Num}">
                            				<c:catch>
-                           				<c:forEach begin="1" end="${dto.notice_Depth}"> -- </c:forEach>
+                           				<c:forEach begin="1" end="${dto.notice_Depth}">(Re:)</c:forEach>
                            				</c:catch>
                            					${dto.notice_Title}
                            				

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.winter.app.member.MemberDAO">
+  	<insert id="setJoin" parameterType="MemberDTO">
+  		INSERT INTO MEMBER VALUES(#{userName},#{password},#{eMail},#{phone},#{address},#{name})
+  	</insert>
+  
+  	<insert id="setFileJoin" parameterType="MemberFileDTO">
+  		INSERT INTO AVATAR VALUES(NOTICE_SEQ.NEXTVAL,#{userName},#{fileName},#{oriName})
+  	</insert>
+  
+  </mapper>

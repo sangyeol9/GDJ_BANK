@@ -17,9 +17,7 @@
 								</div>
 								<div class="mb-3">
 								  <label for="contents" class="form-label">내용</label>
-								  <textarea class="form-control" id="contents" rows="3" name="notice_Contents">
-								  	${dto.notice_Contents}
-								  </textarea>
+								  <textarea class="form-control" id="contents" rows="3" name="notice_Contents">${dto.notice_Contents}</textarea>
 								</div>
 								
 								
