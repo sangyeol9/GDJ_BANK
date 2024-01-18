@@ -11,10 +11,10 @@
 								  <input type="text" class="form-control" id="title" name = "notice_Title" value = "${dto.notice_Title }">
 								  
 								</div>
-								<div class="mb-3">
+							<%-- 	<div class="mb-3">
 									<label for="writter" class="form-label">writter 입력</label>
-									<input type="text" 	value="${dto.notice_Writter}"  class="form-control" id="writter" name = "notice_Writter">
-								</div>
+									<input type="text" readonly	value="${member.userName}"  class="form-control" id="writter" name = "notice_Writter">
+								</div> --%>
 								<div class="mb-3">
 								  <label for="contents" class="form-label">내용</label>
 								  <textarea class="form-control" id="contents" rows="3" name="notice_Contents">${dto.notice_Contents}</textarea>

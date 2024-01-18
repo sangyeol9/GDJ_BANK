@@ -8,7 +8,16 @@ public class MemberDTO {
 	private String eMail;
 	private String phone;
 	private String address;
+	private MemberFileDTO fileDTO;
 	
+	
+	
+	public MemberFileDTO getFileDTO() {
+		return fileDTO;
+	}
+	public void setFileDTO(MemberFileDTO fileDTO) {
+		this.fileDTO = fileDTO;
+	}
 	public String getUserName() {
 		return userName;
 	}

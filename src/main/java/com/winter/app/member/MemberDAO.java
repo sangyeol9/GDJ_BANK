@@ -1,5 +1,6 @@
 package com.winter.app.member;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,10 @@ public class MemberDAO {
 	
 	public int setFileJoin (MemberFileDTO attach ) throws Exception{
 		return sqlSession.insert(namespace+"setFileJoin",attach);
+	}
+	
+	public MemberDTO getDetail(MemberDTO dto) throws Exception {
+		return sqlSession.selectOne(namespace+"getDetail",dto);
 	}
 	
 }

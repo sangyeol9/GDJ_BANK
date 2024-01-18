@@ -1,5 +1,8 @@
 package com.winter.app.member;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +20,23 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	@GetMapping
+	@GetMapping("logout")
+	public String getLogOut(HttpSession session) throws Exception{
+		//session.setAttribute("member", null);
+		//session.removeAttribute("member");
+		//session.removeValue("member")
+		
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
+	@GetMapping("join")
 	public String setJoin() throws Exception {
 		
 		return "member/join";
 	}
-	@PostMapping
+	@PostMapping("join")
 	public String setJoin(MemberDTO dto,Model model,MultipartFile attach) throws Exception{
 		int result = service.setJoin(dto,attach);
 		String path = "/";
@@ -33,6 +47,36 @@ public class MemberController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("path", path);
 		return "/commons/result";
+	}
+	
+	@GetMapping("login")
+	public String getLogin() {
+		return "member/login";
+	}
+	
+	@PostMapping("login")
+	public String getLogin(MemberDTO dto,HttpSession session,Model model) throws Exception{
+		dto = service.getLogin(dto);
+		if(dto==null) {
+			model.addAttribute("msg", "아이디 또는 패스워드를 확인하세요");
+		return "member/login";
+		}
+		session.setAttribute("member", dto);
+		
+		
+		
+		return "redirect:/";
+	}
+	
+	@GetMapping("mypage")
+	public String getMyPage(HttpSession session,Model model) throws Exception{
+		
+	MemberDTO dto =(MemberDTO)session.getAttribute("member");
+	
+	model.addAttribute("mypage", dto);
+	
+		
+		return "member/mypage";
 	}
 	
 }

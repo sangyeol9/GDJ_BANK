@@ -2,6 +2,8 @@ package com.winter.app.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.BoardService;
+import com.winter.app.member.MemberDTO;
 import com.winter.app.util.Paser;
 
 @RequestMapping("/qna/*")
@@ -46,15 +49,16 @@ public class QnaController {
 		return "qna";
 	}
 	
-	@GetMapping
+	@GetMapping("update")
 	public String setUpdate(BoardDTO dto , Model model) throws Exception{
 		dto = boardService.getDetail(dto);
 		model.addAttribute("dto", dto);
 		return "board/update";
 	}
 	
-	@PostMapping
-	public String setUpdate(BoardDTO dto , Model model , MultipartFile [] attach) throws Exception{
+	@PostMapping("update")
+	public String setUpdate(BoardDTO dto , Model model , MultipartFile [] attach,HttpSession session) throws Exception{
+		
 		boardService.setUpdate(dto, attach);
 		
 		return "redirect:./list";
@@ -68,7 +72,8 @@ public class QnaController {
 	}
 	
 	@PostMapping("reply")
-	public String setReply(QnaDTO dto,MultipartFile [] attach) throws Exception{
+	public String setReply(QnaDTO dto,MultipartFile [] attach,HttpSession session) throws Exception{
+		dto.setNotice_Writter( ( (MemberDTO)session.getAttribute("member") ).getUserName());
 		int result = qnaService.setReply(dto,attach);
 		
 		return "redirect:./list";
@@ -97,7 +102,8 @@ public class QnaController {
 		return "board/add";
 	}
 	@PostMapping("add")
-	public String setAdd(BoardDTO dto,MultipartFile [] attach) throws Exception{
+	public String setAdd(BoardDTO dto,MultipartFile [] attach,HttpSession session) throws Exception{
+		dto.setNotice_Writter( ( (MemberDTO)session.getAttribute("member") ).getUserName() );
 		int result = boardService.setAdd(dto,attach);
 		
 		return "redirect:./list";

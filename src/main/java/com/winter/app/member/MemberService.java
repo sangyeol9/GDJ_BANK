@@ -1,5 +1,7 @@
 package com.winter.app.member;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,12 +15,14 @@ public class MemberService {
 	private MemberDAO dao;
 	@Autowired
 	private FileManager manager;
+	@Autowired
+	private ServletContext context;
 	public int setJoin(MemberDTO dto,MultipartFile attach) throws Exception {
 		int result = dao.setJoin(dto);
-		String path = "/resources/upload/member";
+		String path = context.getRealPath("/resources/upload/member");
 		
 		String fileName = manager.fileSave(path, attach);
-		
+		System.out.println(path);
 		if(!attach.isEmpty()) {
 		MemberFileDTO fileDTO = new MemberFileDTO();
 		fileDTO.setFileName(fileName);
@@ -28,6 +32,19 @@ public class MemberService {
 		}
 		
 		return result;
+	}
+	
+	
+	
+	public MemberDTO getLogin (MemberDTO dto ) throws Exception{
+		MemberDTO m = dao.getDetail(dto);
+		if(m != null) {
+			if(m.getPassword().equals(dto.getPassword()))
+			{
+				return m;
+			}
+		}
+		return null;
 	}
 	
 }
