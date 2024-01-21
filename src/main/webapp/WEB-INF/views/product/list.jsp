@@ -16,6 +16,29 @@
 				<span class="text-gradient d-inline">Product List</span>
 			</h1>
 
+			<div>
+			
+				<form id="searchList" class="row g-3" action="list" method="get">
+					<div class = "col-auto">
+					  <select name="kind" class="form-select" aria-label="Default select example">
+					  <option class="searchVal" value="kind1">name</option>
+					  <option class="searchVal" value="kind2">contents</option>
+					  <option class="searchVal" value="kind3">rate</option>
+					  <option class="searchVal" value="kind4">name+writer+contents</option>
+						</select>
+						<!-- JS를 사용하여 ATRRIBUTE 값을 넣어준다! -->
+					</div>
+				  <div class="col-auto">
+				    <label for="search" class="visually-hidden">search</label>
+				    <input type="text" name="search" class="form-control" id="search" placeholder="search" value="${page.search}">
+				  </div>
+				  <div class="col-auto">
+				    <button id = "searchBtn" type="submit" class="btn btn-primary mb-3">검색</button>
+				  </div>
+				</form>
+			
+		</div>
+
 			<table>
 				<tr>
 					<th>num</th>
@@ -65,5 +88,7 @@
 	</div>
 
 	<c:import url="../temps/footer.jsp"></c:import>
+
+	<script src="/resources/js/boardSearch.js"></script>
 </body>
 </html>

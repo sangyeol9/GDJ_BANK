@@ -23,6 +23,7 @@
   		SELECT * FROM 
   			(SELECT ROWNUM R,RG.* FROM
   			(SELECT * FROM PRODUCT 
+  			 <include refid="search2"></include>
   			 ORDER BY PRODUCTNUM DESC) RG)
   			 WHERE R BETWEEN #{start_num} AND #{last_num}
   	</select>
