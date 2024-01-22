@@ -36,6 +36,12 @@ public class MemberController {
 		
 		return "member/join";
 	}
+	
+	@GetMapping("agreement")
+	public void setAgreement() throws Exception{
+		
+	}
+	
 	@PostMapping("join")
 	public String setJoin(MemberDTO dto,Model model,MultipartFile attach) throws Exception{
 		int result = service.setJoin(dto,attach);
