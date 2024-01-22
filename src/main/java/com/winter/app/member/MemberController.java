@@ -79,4 +79,30 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
+	@GetMapping("update")
+	public void setUpdate(HttpSession session) throws Exception{
+		
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(MemberDTO dto,HttpSession session,Model model) throws Exception{
+		MemberDTO temp = new MemberDTO();
+		 temp = ( (MemberDTO)session.getAttribute("member"));
+		dto.setUserName(temp.getUserName());
+		dto = service.setUpdate(dto); 
+		String msg = "성공";
+		String path = "/member/mypage";
+		
+		
+		
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("path", path);
+		
+		session.setAttribute("member", dto);
+		model.addAttribute("mypage", dto);
+		
+		return "/commons/result";
+	}
+	
 }

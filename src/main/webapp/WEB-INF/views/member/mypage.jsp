@@ -59,15 +59,11 @@
                         </div>
 						
                         <div>
-                            <c:if test="${bbs eq 1}">	
-                                <a  class="btn btn-primary" href="reply?notice_Num=${detail.notice_Num}">답글</a>
-                            </c:if> 
-                            <a id="update" class="btn btn-info" href="#">update</a>
-                            <a id="delete" class="btn btn-danger" href="#">delete</a>
-                            <form id="frm" action="update" method="get">
-                                <input type="hidden" name="notice_Num" value="${detail.notice_Num}">
-                            </form>
+                            <a class="btn btn-primary" href="./update">수정</a>
+
                         </div>
+
+                        
                     </div>
                 </div>
             </div>

@@ -34,7 +34,11 @@ public class MemberService {
 		return result;
 	}
 	
-	
+	public MemberDTO setUpdate(MemberDTO dto) throws Exception{
+		int result = dao.setUpdate(dto);
+		dto = dao.getDetail(dto);
+		return dto;
+	}
 	
 	public MemberDTO getLogin (MemberDTO dto ) throws Exception{
 		MemberDTO m = dao.getDetail(dto);
