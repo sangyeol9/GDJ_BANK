@@ -33,12 +33,7 @@
 								  <label for="ID" class="form-label">아이디 입력</label>
 								  <input disabled="disabled" value="${member.userName }" type="text" class="form-control" id="ID" name = "userName" >  
 								</div>
-								<div class="mb-3">
-									<label for="password" class="form-label">비밀번호 입력</label>
-									<input type="password" value="${member.password }" class="form-control" id="password" name = "password">
-									<label for="password2" class="form-label">2차 비밀번호 입력</label>
-									<input type="password"  class="form-control" id="password2" >
-								</div>
+							
 								<div class="mb-3">
 								  <label for="email" class="form-label">이메일</label>
 							  	  <input type="email" value="${member.eMail }"  class="form-control" id="email" name = "eMail">
