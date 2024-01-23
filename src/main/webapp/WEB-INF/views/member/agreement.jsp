@@ -59,12 +59,16 @@
                               선택 동의 2
                             </label>
                       </div>
+                      
+                      <div>
+                      	<a id="join" class="btn btn-primary" href="/member/join">회원가입</a>
+                      </div>
 			</div>
 		</div>        
         </main>
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요 -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script type="text/javascript" src="/resources/js/agreement.js"></script>
+	<script type="text/javascript" src="/resources/js/member/agreement.js"></script>
     </body>
 </html>

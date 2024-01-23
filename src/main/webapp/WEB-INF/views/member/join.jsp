@@ -5,6 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <style>
+            div.yes{color:green;}
+            div.no{color:red;}
+         </style>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -31,26 +35,28 @@
                     		
                     			<div class="mb-3">
 								  <label for="ID" class="form-label">아이디 입력</label>
-								  <input type="text" class="form-control" id="ID" name = "userName" >
+								  <input type="text" class="form-control must " id="ID" name = "userName" required >
 								  
 								</div>
 								<div class="mb-3">
-									<label for="password" class="form-label">비밀번호 입력</label>
-									<input type="password"  class="form-control" id="password" name = "password">
-									<label for="password2" class="form-label">2차 비밀번호 입력</label>
-									<input type="password"  class="form-control" id="password2" >
+									<label for="password" class="form-label ">비밀번호 입력</label>
+									<input type="password"  class="form-control must" id="password" name = "password" required>
+                                    <div id="pwResult"></div>
+									<label for="password2" class="form-label ">2차 비밀번호 입력</label>
+									<input type="password"  class="form-control must" id="password2"  required >
+                                    <div id="pwResult2"></div>
 								</div>
 								<div class="mb-3">
-								  <label for="email" class="form-label">이메일</label>
-							  	  <input type="email"  class="form-control" id="email" name = "eMail">
+								  <label for="email" class="form-label ">이메일</label>
+							  	  <input type="email"  class="form-control must" id="email" name = "eMail" required>
 								</div>
 								<div class="mb-3">
-								  <label for="phone" class="form-label">번호</label>
-							  	  <input type="text"  class="form-control" id="phone" name = "phone">
+								  <label for="phone" class="form-label must">번호</label>
+							  	  <input type="text"  class="form-control" id="phone" name = "phone" required>
 								</div>
 								<div class="mb-3">
-								  <label for="address" class="form-label">주소</label>
-							  	  <input type="text"  class="form-control" id="address" name = "address">
+								  <label for="address" class="form-label must">주소</label>
+							  	  <input type="text"  class="form-control" id="address" name = "address" required>
 							  	    	<input type="text" id="postcode" placeholder="우편번호">
 										<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 										<input type="text" id="road" placeholder="도로명주소">
@@ -61,8 +67,8 @@
 							  	  
 								</div>
 								<div class="mb-3">
-								  <label for="name" class="form-label">이름</label>
-							  	  <input type="text"  class="form-control" id="name" name = "name">
+								  <label for="name" class="form-label ">이름</label>
+							  	  <input type="text"  class="form-control must" id="name" name = "name" required>
 								</div>
 								
 								
@@ -71,7 +77,7 @@
 								</div>
 								
 								<div class="mb-3">
-									<button id="Btn" class="btn btn-primary">등록</button>
+									<button id="Btn" type="button" class="btn btn-primary">등록</button>
 								</div>
                     		</form>
                     
@@ -87,6 +93,7 @@
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요 -->
 	<c:import url="../temps/footer.jsp"></c:import>
+    <script src="/resources/js/member/joinCheck.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	let address1 = document.getElementById("address");
