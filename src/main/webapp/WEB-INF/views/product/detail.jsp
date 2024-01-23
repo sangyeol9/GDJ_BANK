@@ -27,7 +27,11 @@
 		<div>
 			<a href="delete?productNum=${detail.productNum}"> 삭제하기 </a>
 		</div>
-
+		<c:if test="${member != null}">
+		<div>
+			<a href = "/account/add?productNum=${detail.productNum}">상품 가입하기</a>
+		</div>
+		</c:if>
 	</main>
 	<!-- Footer-->
 	<!-- 사용전 경로를 꼭 수정하세요 -->

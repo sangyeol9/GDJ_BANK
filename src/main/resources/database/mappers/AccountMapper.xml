@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.winter.app.account.AccountDAO">
+  	<insert id="setAdd" parameterType="AccountDTO">
+  		INSERT INTO ACCOUNT (ACCOUNT_NUM,USERNAME,PRODUCTNUM,ACCOUNT_PW) VALUES(#{account_num} ,#{userName},#{productNum},#{account_pw})
+  	</insert>
+  	
+  	<select id="getList" resultMap="getDTO" parameterType="AccountDTO">
+	  SELECT * FROM
+		(SELECT ROWNUM R, A.* FROM 
+			(SELECT * FROM ACCOUNT
+			LEFT OUTER JOIN
+			PRODUCT
+			USING (PRODUCTNUM)
+			WHERE USERNAME = #{userName}
+			ORDER BY PRODUCTNUM DESC) A) B
+		WHERE B.R BETWEEN #{pager.start_num} AND #{pager.last_num}
+
+  	</select>
+  	<resultMap type="ProductDTO" id="getDTO">
+  		<id column="PRODUCTNUM" property="productNum"/>
+  		<result column="PRODUCTNAME" property="productName"/>
+  		<result column="PRODUCTCONTENTS" property="productContents"/>
+  		<result column="PRODUCTRATE" property="productRate"/>
+  		<result column="PRODUCTJUMSU" property="productJumsu"/>
+  		<result column="PRODUCTCOUNT" property="productCount"/>
+  		<result column="PRODUCTSALE" property="productSale"/>
+  		<collection property="accountDTOs" javaType="List" ofType="AccountDTO" >
+	  		<id column="ACCOUNT_NUM" property="account_num"/>
+	  		<result column="ACCOUNT_PW" property="account_pw"/>
+	  		<result column="ACCOUNT_DATE" property="account_date"/>
+	  		<result column="ACCOUNT_BALANCE" property="account_balance"/>
+	  		<result column="USERNAME" property="userName"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<select id="getTotalCount" resultType="Integer" parameterType="AccountDTO">
+  		SELECT COUNT(ACCOUNT_NUM) FROM ACCOUNT WHERE USERNAME = #{userName}
+  		
+  	</select>
+  </mapper>

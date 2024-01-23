@@ -22,6 +22,7 @@
 		<mapping path="/member/mypage"/>
 		<mapping path="/member/update"/>
 		<mapping path="/member/delete"/>
+		<mapping path="/account/add"/>
 		<exclude-mapping path="/qna/list"/>
 		<exclude-mapping path="/member/join"/>
 		<beans:ref bean="authenticationgInterCeptor"/>
@@ -32,6 +33,7 @@
 		<mapping path="/notice/update"/>
 		<mapping path="/qna/delete"/>
 		<mapping path="/notice/delete"/>
+		
 		<beans:ref bean="writterCheck"/>
 	</interceptor>
 	

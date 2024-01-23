@@ -13,6 +13,8 @@
                             <li class="nav-item"><a class="nav-link" href="/product/list">Product</a></li>
                             <li class="nav-item"><a class="nav-link" href="/notice/list">Notice</a></li>
                             <li class="nav-item"><a class="nav-link" href="/qna/list">QnA</a></li>
+                            
+                            <li class="nav-item"><a class="nav-link" href="/account/list">my 자산</a></li>
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                         	<c:if test="${member == null}">

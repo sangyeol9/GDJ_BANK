@@ -116,4 +116,12 @@ public class Paser {
 	public void setPager(Integer pager) {
 		this.pager = pager;
 	}
+	@Override
+	public String toString() {
+		return "Paser [start_num=" + start_num + ", last_num=" + last_num + ", page=" + page + ", pager=" + pager
+				+ ", totalPage=" + totalPage + ", totalBlock=" + totalBlock + ", perBlock=" + perBlock + ", start_page="
+				+ start_page + ", last_page=" + last_page + ", search=" + search + ", kind=" + kind + "]";
+	}
+	
+	
 }
