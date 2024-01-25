@@ -17,6 +17,7 @@ public class MemberService {
 	private FileManager manager;
 	@Autowired
 	private ServletContext context;
+	
 	public int setJoin(MemberDTO dto,MultipartFile attach) throws Exception {
 		int result = dao.setJoin(dto);
 		String path = context.getRealPath("/resources/upload/member");
@@ -38,6 +39,9 @@ public class MemberService {
 		int result = dao.setUpdate(dto);
 		dto = dao.getDetail(dto);
 		return dto;
+	}
+	public MemberDTO getDetail(MemberDTO dto ) throws Exception{
+		return dao.getDetail(dto);
 	}
 	
 	public MemberDTO getLogin (MemberDTO dto ) throws Exception{

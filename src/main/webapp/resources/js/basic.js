@@ -1,20 +1,30 @@
-const b1 = document.getElementById("b1");
-const b2 = document.getElementById("b2");
+let btn = document.getElementById("btn");
+let btn2 = document.getElementById("btn2");
 
-b1.addEventListener("click",(e) => {
-    b1.innerHTML = "test";
+btn2.addEventListener("click",function(){
+    let t = document.getElementById("title").value;
+    let c = document.getElementById("contents").value;
+
+    fetch('/notice/add',{
+        method:'POST',
+        headers:{
+            "Content-type":"application/x-www-form-urlencoded"
+        },
+    body:"notice_Title="+t+"&notice_Contents="+c
+    })
+    .then(response => response.text())
+    .then(response=>console.log(response))
 })
 
-//
-$("#b2").click( ()=>{
+btn.addEventListener("click",function(){
+    console.log('ajax 시작');
 
-});
-
-$('#b2').on("click",function(){
-    $('#b2').html('test');
-    $('#b2').attr('속성명')
-    $('#b2').attr('속성명','value')
-    $('#b2').prop('속성명')
-    $('#b2').pro('속성명','value')
-    
+    fetch('/notice/list',{
+        method:'GET'
+    })
+    .then(response=>{return response.text()})
+    .then((res)=>{
+       document.getElementById("result").innerHTML = res;
+    });
+    console.log("끝");
 })

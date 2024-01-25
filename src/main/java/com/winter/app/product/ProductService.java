@@ -17,7 +17,7 @@ public class ProductService {
 		@Autowired
 		private ProductDAO productDAO;
 		
-		//@Autowired
+		@Autowired
 		private ServletContext context;
 		
 		@Autowired
@@ -67,8 +67,8 @@ public class ProductService {
 		
 		public int setAdd(ProductDTO dto,MultipartFile [] file) throws Exception{
 			int result = productDAO.setAdd(dto);
-			String path = context.getRealPath("resources/upload/product");
-			
+			System.out.println("path : " +  context.getRealPath("/resources/upload/product"));
+			String path = context.getRealPath("/resources/upload/product");
 			for(MultipartFile ar:file) {
 				if(ar.isEmpty()) continue;
 			String filename =fileManager.fileSave(path, ar);

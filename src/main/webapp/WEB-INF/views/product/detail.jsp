@@ -20,21 +20,24 @@
 		<c:import url="../temps/header.jsp"></c:import>
 
 		<h1>product name = ${detail.productName}</h1>
-
+		<c:if test="${member != null}">
 		<div>
 			<a href="update"> 수정하기 </a>
 		</div>
 		<div>
 			<a href="delete?productNum=${detail.productNum}"> 삭제하기 </a>
 		</div>
-		<c:if test="${member != null}">
 		<div>
 			<a href = "/account/add?productNum=${detail.productNum}">상품 가입하기</a>
+		</div>
+		<div>
+			<button data-wish="${detail.productNum}" id="wish" type="button">관심추가</button>
 		</div>
 		</c:if>
 	</main>
 	<!-- Footer-->
 	<!-- 사용전 경로를 꼭 수정하세요 -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="/resources/js/product/wishlist.js"></script>
 </body>
 </html>

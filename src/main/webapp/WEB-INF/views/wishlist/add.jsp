@@ -9,32 +9,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>${board} Add</title>
+        <title>Personal - Start Bootstrap Theme</title>
         <!-- 사용전 경로를 꼭 수정하세요 -->
        <c:import url="../temps/head_css.jsp"></c:import>
-       <c:import url="../temps/summerNote.jsp"></c:import>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- 사용전 경로를 꼭 수정하세요 -->
           <c:import url="../temps/header.jsp"></c:import>
-        
-        	<section class="py-5">
-           	 <div class="container px-5 mb-5">
-            	   	 <div class="text-center mb-5">
-                    	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}  ADD</span></h1>
-                	 </div>
-               	 <c:import url ="../temps/boardForm.jsp"></c:import>
-             </div>
-            </section>
-        
+        <h1>hello wishlist</h1>
         </main>
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요 -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="../../../resources/js/commons/fileManager.js"></script>
-	<script type="text/javascript">
-		$("#contents").summernote();
-	</script>
     </body>
 </html>

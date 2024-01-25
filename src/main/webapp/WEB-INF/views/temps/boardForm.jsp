@@ -22,12 +22,9 @@
 								
 								
 								
-								<div class="mb-3">
-									<input class="form-control" type="file" name="attach">
-									<input class="form-control" type="file" name="attach">
-									<input class="form-control" type="file" name="attach">
+								<div class="mb-3" id="fileList" data-file-count="0" data-file-max="5" >
+									<button type="button" id = "fileAdd">파일추가 </button>
 								</div>
-								
 								<div class="mb-3">
 									<button class="btn btn-primary">등록</button>
 								</div>

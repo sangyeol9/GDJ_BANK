@@ -55,8 +55,7 @@
 						<li class="page-item"><a class="page-link"
 							href="list?page=${i}">${i}</a></li>
 					</c:forEach>
-					<c:if
-						test="${page.start_page != page.totalBlock*page.perBlock-(page.perBlock-1)}">
+					<c:if test="${page.start_page != page.totalBlock*page.perBlock-(page.perBlock-1)}">
 						<li class="page-item"><a class="page-link"
 							href="list?page=${page.last_page+1}"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>

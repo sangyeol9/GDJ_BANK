@@ -23,7 +23,8 @@
                             </c:if>
                             <c:if test="${member != null}">
                             <li class="nav-item"><a class="nav-link" href="/member/mypage">MyPage</a></li>
-							<li class="nav-item"><a class="nav-link" href="/member/logout">Logout</a></li>					                           
+							<li class="nav-item"><a class="nav-link" href="/member/logout">Logout</a></li>
+							<li class="nav-item"><a class="nav-link" href="/wishlist/list">WishList</a></li>							                           
                             </c:if>
                         </ul>
                     </div>

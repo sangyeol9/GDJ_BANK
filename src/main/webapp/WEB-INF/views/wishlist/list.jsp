@@ -9,32 +9,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>${board} Add</title>
+        <title>Personal - Start Bootstrap Theme</title>
         <!-- 사용전 경로를 꼭 수정하세요 -->
        <c:import url="../temps/head_css.jsp"></c:import>
-       <c:import url="../temps/summerNote.jsp"></c:import>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- 사용전 경로를 꼭 수정하세요 -->
           <c:import url="../temps/header.jsp"></c:import>
         
-        	<section class="py-5">
-           	 <div class="container px-5 mb-5">
-            	   	 <div class="text-center mb-5">
-                    	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}  ADD</span></h1>
-                	 </div>
-               	 <c:import url ="../temps/boardForm.jsp"></c:import>
-             </div>
-            </section>
+
+            <button id="btn">삭제</button>
+        	<table class="table table-hover">
+				<tr>
+                    <th><input id="checkAll" type="checkbox"><label for="checkAll">전체 선택</label></th>
+					<th>상품번호</th>
+					<th>상품명</th>
+					<th>이자율</th>
+					
+				</tr>
+
+				<c:forEach items="${list}" var="list">
+						
+					<tr>
+                            <td><input id="${list.productNum}b" value="${list.productNum}" type="checkbox" class="wishlist"></td>
+							<td>${list.productNum}</td>
+							<td>${list.productName}</td>
+							<td>${list.productRate }</td>
+                            
+							
+					</tr>
+						
+				</c:forEach>
+			</table>
+        	
+        	
         
         </main>
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정하세요 -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="../../../resources/js/commons/fileManager.js"></script>
-	<script type="text/javascript">
-		$("#contents").summernote();
-	</script>
+    <script src="/resources/js/wishlist/list.js"></script>
     </body>
 </html>

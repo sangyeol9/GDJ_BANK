@@ -101,10 +101,11 @@
 							</nav>
 						</div> 
                         
+                        <c:if test="${member != null }">
                         <div>
                         	<a href="add" class="btn btn-primary">글 쓰기</a>
                         </div>
-                        
+                        </c:if>
                 </div>
             </div>
         </section>

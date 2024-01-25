@@ -36,7 +36,7 @@
                     			<div class="mb-3">
 								  <label for="ID" class="form-label">아이디 입력</label>
 								  <input type="text" class="form-control must " id="ID" name = "userName" required >
-								  
+								  <div id="idResult"></div>
 								</div>
 								<div class="mb-3">
 									<label for="password" class="form-label ">비밀번호 입력</label>

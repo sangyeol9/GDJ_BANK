@@ -6,6 +6,49 @@ const pw2 = document.getElementById("password2")
 const pwRe= document.getElementById("pwResult");
 const pwRe2 = document.getElementById("pwResult2");
 const must = document.getElementsByClassName("must");
+const ID = document.getElementById("ID");
+const idResult = document.getElementById("idResult")
+ID.addEventListener("blur",function(){
+//     console.log("blur event");
+//   fetch("/member/idcheck?userName="+ID.value,{
+//       method : 'GET',
+      
+//   })
+//   .then(response => response.text())
+//   .then(response=>{
+//     if(response.trim()=='0'){
+//       alert("사용불가능");
+//     idResult.innerHTML = '사용불가능'
+//   }
+//   else{alert("사용 가능");
+//      idResult.innerHTML='사용 가능'
+
+// }
+// })
+
+
+// jquery
+
+// $.get("/member/idcheck?userName="+ID.value,function(response){
+//   console.log(response);
+// })
+
+$.ajax({
+  url : '/member/idcheck',
+  method : 'GET',
+  data : {
+    userName : ID.value
+  },
+    success : function(res){
+    console.log(res);
+  },
+  error : function(){
+    alert("ID 검증 실패");
+  }
+})
+
+})
+
 p.addEventListener("blur",function(){
     console.log(p.value);
     if(pw2.value != p.value){
